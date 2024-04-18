@@ -62,6 +62,11 @@ case $1 in
   ;;
   stop)
     stop_ui
+    echo "Stopping ollama..."
+    pkill -f ollama || true
+  ;;
+  update)
+     curl -s https://raw.githubusercontent.com/RallyCommerce/rally-ollama/master/install.sh | sudo bash 
   ;;
     *)
     # pass to ollama native cli as wrapper
