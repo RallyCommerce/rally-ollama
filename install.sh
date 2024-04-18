@@ -23,6 +23,10 @@ install_ui(){
   fi
 }
 
+start_ollama() {
+  nohup ollama serve &> /dev/null
+}
+
 start_ui() {
   if [ "$( docker container inspect -f '{{.State.Running}}' $container_name )" != "true" ]; then
     docker start $container_name
@@ -53,6 +57,7 @@ case $1 in
     install_ui
   ;;
   start)
+    start_ollama
     start_ui
   ;;
   stop)
