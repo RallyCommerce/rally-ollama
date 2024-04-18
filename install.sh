@@ -42,7 +42,7 @@ stop_ui() {
   docker stop $container_name
 }
 
-install_ollama(){
+install_ollama() {
   if command -v ollama &> /dev/null
   then
       echo "Ollama already installed."
@@ -51,9 +51,14 @@ install_ollama(){
   fi
 }
 
+install_model() {
+  ollama pull llama2
+}
+
 case $1 in
   install)
     install_ollama
+    install_model
     install_ui
   ;;
   start)
@@ -62,7 +67,7 @@ case $1 in
   ;;
   stop)
     stop_ui
-    echo "Stopping ollama..."
+    echo "Stopping Ollama..."
     pkill -f ollama || true
   ;;
   update)
