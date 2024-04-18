@@ -24,7 +24,8 @@ install_ui(){
 }
 
 start_ollama() {
-  nohup ollama serve &> /dev/null
+  ollama serve &
+  disown
 }
 
 start_ui() {
